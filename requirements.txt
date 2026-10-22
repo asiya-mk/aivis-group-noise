@@ -1,0 +1,12 @@
+transformers
+torch
+torchaudio
+librosa
+soundfile
+datasets
+audiomentations
+umap-learn
+plotly
+pandas
+matplotlib
+streamlit

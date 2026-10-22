@@ -218,3 +218,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- Project: audio data and model weights live on Google Drive, not in git ---
+data/
+drive_local/
+*.wav
+*.flac
+*.mp3
+*.ogg
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.npy
+*.npz

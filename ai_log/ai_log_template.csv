@@ -1,0 +1,2 @@
+date,who,pair,phase,ai_tool,goal,prompt,ai_suggestion,decision (accepted/rejected/refined),why,failure_pattern_observed
+2026-10-22,example,A,setup,ChatGPT,map ESC-50 labels to AudioSet,"Map these 50 ESC-50 classes to AudioSet ontology labels: ...","Table with 50 mappings",refined,"3 mappings were wrong (e.g. 'crackling_fire' -> 'Fire' does not exist), fixed by hand",invented label names
