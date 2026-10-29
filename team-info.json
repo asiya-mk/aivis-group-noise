@@ -1,0 +1,33 @@
+{
+    "team_name": "Noise",
+    "students": [
+        {
+            "student_id": "k12648788",
+            "first_name": "Asiya",
+            "last_name": "Meshitbay",
+            "email": "aseka.m00@gmail.com",
+            "github_user": "asiya-mk"
+        },
+        {
+            "student_id": "k12646283",
+            "first_name": "Gurmehak",
+            "last_name": "Khera",
+            "email": "_",
+            "github_user": "gurmehakmk-khera"
+        },
+        {
+            "student_id": "k12454512",
+            "first_name": "Elif",
+            "last_name": "Beyza Gokdemir",
+            "email": "",
+            "github_user": "piafebelz"
+        },
+        {
+            "student_id": "k12236997",
+            "first_name": "Rachid",
+            "last_name": "Derar",
+            "email": "_",
+            "github_user": "d3rar"
+        }
+    ]
+}

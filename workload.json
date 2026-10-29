@@ -1,0 +1,25 @@
+{
+    "team_name": "Noise",
+    "students": [
+        {
+            "first_name": "Asiya",
+            "last_name": "Meshitbay",
+            "workload": 0.25
+        },
+        {
+            "first_name": "Gurmehak",
+            "last_name": "Khera",
+            "workload": 0.25
+        },
+        {
+            "first_name": "Elif",
+            "last_name": "Beyza Gokdemir",
+            "workload": 0.25
+        },
+        {
+            "first_name": "Rachid",
+            "last_name": "Derar",
+            "workload": 0.25
+        }
+    ]
+}
