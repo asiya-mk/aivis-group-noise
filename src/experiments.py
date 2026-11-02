@@ -5,6 +5,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import librosa
+import torch
 from datasets import load_dataset, Audio
 from tqdm.auto import tqdm
 
@@ -24,7 +25,7 @@ PARTNER = {
 CLIPS_PER_CLASS = 4
 
 
-def run_files(fe, model, labels, folder):
+def run_files(fe, model, labels, folder, device):
     rows, waves = [], []
     for path in sorted(folder.glob("*")):
         if path.suffix.lower() not in {".wav", ".mp3", ".flac", ".ogg"}:
@@ -36,7 +37,7 @@ def run_files(fe, model, labels, folder):
             waves.append(w)
     if not waves:
         return None, None
-    probs = predict(fe, model, waves)
+    probs = predict(fe, model, waves, device)
     table, _ = prediction_table(probs, labels)
     top5 = [", ".join(f"{labels[j]} {p[j]:.2f}" for j in np.argsort(p)[::-1][:5]) for p in probs]
     return pd.concat([pd.DataFrame(rows), table], axis=1).assign(top5_audioset=top5), probs
@@ -62,7 +63,7 @@ def pick_clips(meta, labels):
     return targets, others
 
 
-def run_perturbations(fe, model, labels):
+def run_perturbations(fe, model, labels, device):
     meta, load = esc_waves()
     targets, others = pick_clips(meta, labels)
     other_wave = {c: load(i) for c, i in others["row"].items()}
@@ -80,16 +81,17 @@ def run_perturbations(fe, model, labels):
                 rows.append({**base, "experiment": "mix", "param": ratio, "distractor": other,
                              "distractor_file": others.loc[other, "filename"]})
                 waves.append(perturb.mix(y, other_wave[other], ratio))
-    probs = np.concatenate([predict(fe, model, waves[s:s + 64]) for s in tqdm(range(0, len(waves), 64))])
+    probs = np.concatenate([predict(fe, model, waves[s:s + 64], device) for s in tqdm(range(0, len(waves), 64))])
     table, _ = prediction_table(probs, labels, [r["target"] for r in rows])
     return pd.concat([pd.DataFrame(rows), table], axis=1), probs
 
 
 if __name__ == "__main__":
     ensure_dirs()
-    fe, model, labels = load_model()
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    fe, model, labels = load_model(device)
     for name in ["lyrebird", "imitations"]:
-        df, probs = run_files(fe, model, labels, DATA_DIR / name)
+        df, probs = run_files(fe, model, labels, DATA_DIR / name, device)
         if df is None:
             print(f"no audio in {DATA_DIR / name}, skipped")
             continue
@@ -97,7 +99,7 @@ if __name__ == "__main__":
         np.save(BIG_RESULTS_DIR / f"{name}_probs.npy", probs)
         print(name, len(df), "windows")
     if "--skip-esc" not in sys.argv:
-        df, probs = run_perturbations(fe, model, labels)
+        df, probs = run_perturbations(fe, model, labels, device)
         df.to_csv(RESULTS_DIR / "perturbation_predictions.csv", index=False)
         np.save(BIG_RESULTS_DIR / "perturbation_probs.npy", probs)
         print("perturbations", len(df), "rows")
