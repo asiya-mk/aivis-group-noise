@@ -50,9 +50,9 @@ def esc_waves():
     return meta, load
 
 
-def pick_clips(meta, labels):
-    base, _ = prediction_table(np.load(BIG_RESULTS_DIR / "baseline_probs.npy"), labels, meta["target"])
-    meta = meta.assign(correct=base["correct"], conf=base["conf"])
+def pick_clips(meta):
+    base = pd.read_csv(RESULTS_DIR / "baseline_predictions.csv").set_index("filename")
+    meta = meta.assign(correct=meta["filename"].map(base["correct"]), conf=meta["filename"].map(base["conf"]))
     targets = meta[(meta["target"] < 10) & meta["correct"]]
     targets = targets.groupby("category", group_keys=False).apply(
         lambda g: g.sample(min(CLIPS_PER_CLASS, len(g)), random_state=0))
@@ -65,7 +65,7 @@ def pick_clips(meta, labels):
 
 def run_perturbations(fe, model, labels, device):
     meta, load = esc_waves()
-    targets, others = pick_clips(meta, labels)
+    targets, others = pick_clips(meta)
     other_wave = {c: load(i) for c, i in others["row"].items()}
     rows, waves = [], []
     for i, r in targets.iterrows():
