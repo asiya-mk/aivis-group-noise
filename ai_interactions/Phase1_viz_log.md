@@ -13,7 +13,3 @@
   * **Decision:** **Accepted.** It removed visual noise from correct predictions and clearly isolated the distractor hijacking behavior (e.g., dog -> siren).
 * **Suggestion:** Implement a 2D PCA projection of the behavioral space.
   * **Decision:** **Rejected (for Phase 1).** While analytically correct, visualizing a projection looks too much like analyzing internal representations (opening the "black box"), which is strictly a Phase 2 requirement. This was saved for the December submission.
-
-## Failure Patterns & Best Practices
-* **Failure Pattern:** The AI struggled to interpret raw binary `.npy` data pasted directly into the chat interface.
-* **Best Practice:** Providing the AI with screenshots of the rendered Plotly dashboards alongside the Jupyter Notebook code yielded much better, context-aware feedback.
