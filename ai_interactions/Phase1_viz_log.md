@@ -8,8 +8,11 @@
 ## AI Suggestions & Decisions
 
 * **Suggestion:** Create a Cumulative Confidence Sweep (line chart) showing prediction drift as confidence drops.
-  * **Decision:** **Accepted.** This directly answered the assignment prompt regarding "errors/confidence change" and clearly showed the impact of mixed audio versus white noise.
-* **Suggestion:** Use a "Mistakes Only" filter on the confusion matrix grouped by semantic hierarchy.
-  * **Decision:** **Accepted.** It removed visual noise from correct predictions and clearly isolated the distractor hijacking behavior (e.g., dog -> siren).
-* **Suggestion:** Implement a 2D PCA projection of the behavioral space.
-  * **Decision:** **Rejected (for Phase 1).** While analytically correct, visualizing a projection looks too much like analyzing internal representations (opening the "black box"), which is strictly a Phase 2 requirement. This was saved for the December submission.
+  * **Decision:** **Accepted.**  This directly answered the assignment prompt regarding "errors/confidence change" 
+  ![Cumulative Confidence Sweep] 
+
+* **Suggestion:** A confusion matrix grouped by sound family, filtered to show only mistakes. 
+  * **Decision:** **Accepted.** (confusion_matrix_perturbed_animals_conf_le_0.88_mistakes_only.jpg) It hid the correct answers so we could easily see exactly when a background sound tricked the model (like guessing a siren instead of a dog).
+
+* **Suggestion:** Build a 2D scatter plot (PCA) to map the model's outputs.
+  * **Decision:** **Rejected (for Phase 1).**  It involves looking at the model's internal workings rather than just its final outputs. 
