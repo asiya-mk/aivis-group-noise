@@ -53,13 +53,28 @@
   **Graph 2: Share of Predicted Sound Families (Right Graph)**
   Moving to the right graph, the stacked bars show what the model actually guessed. For Clean Animals, the bar is predominantly green, meaning it correctly predicts an animal. White Noise remains mostly green as well, showing the model handles static well. However, looking at Mixed Audio, the green portion drops to 64%, with predictions shifting into urban, human, and natural sounds. For Human Imitations, the green drops to 70%, and the purple section (Human Sounds) increases to 25%, as the model detects the human voice. Finally, for the Superb Lyrebird, the green drops to roughly 12%, and the model predominantly predicts Natural Sounds (blue) at 84%.
 
-  **Conclusion:**    
+  **Conclusion:**
   These plots show that the model is highly confident and accurate with clean audio and generic static. However, when presented with meaningful distractors such as mixed audio, human imitations, or lyrebird mimicry, the model's confidence drops, and its predictions shift away from the animal category.
 
 * **Suggestion:** A confusion matrix grouped by sound family, filtered to show only mistakes.
   * **Decision:** **Accepted.** It hid the correct answers so we could easily see exactly when a background sound tricked the model (like guessing a siren instead of a dog).
 
   ![Confusion Matrix — Mistakes Only](../viz_plots/confusion_matrix_perturbed_animals_conf_le_0.88_mistakes_only.png)
+
+  **How to read the chart:**
+  The left graph shows individual audio clips where the model made a mistake (confidence ≤ 0.88), plotted by their true animal class and the model's confidence score.
+  The right graph is a confusion matrix showing exactly what the model predicted for these true animal sounds, grouped by broader sound families.
+
+  Both plots only show mistakes. We filtered out the correct predictions to focus on the model's errors.
+
+  **Graph 1: Individual Audio Clips (Left Graph)**
+  Starting with the left graph, the X-axis lists the true animal classes (dog, rooster, pig, etc.), and the Y-axis shows the model's confidence score for an animal. The dashed line marks the 0.88 threshold. The dots are colored based on what the model predicted: red is Urban, purple is Human, blue is Natural, and orange is an incorrect animal class. Looking at the distribution, we see many purple and red dots, indicating that for these difficult, low-confidence animal clips, the model frequently guessed human or urban sounds.
+
+  **Graph 2: Confusion Matrix (Right Graph)**
+  Moving to the right graph, the Y-axis shows the true animal classes, and the X-axis shows the model's predicted sound family (Animals, Natural Sounds, Human Sounds, Urban / Street). A perfect model would have high numbers along the diagonal under "Animals". Here, that diagonal is mostly empty. Instead, the dark red cells are concentrated in the Natural, Human, and Urban columns. For example, true dog barks were predicted as rain 20 times and as a crying baby 18 times. Rooster calls were predicted as rain 18 times and as a siren 11 times.
+
+  **Conclusion:**
+  These plots show that when the model makes a mistake on an animal clip, it rarely guesses the wrong animal. Instead, the model's predictions shift toward other sound families, primarily misclassifying the animals as natural, human, or urban sounds.
 
 * **Suggestion:** Build a 2D scatter plot (PCA) to map the model's outputs.
   * **Decision:** **Rejected (for Phase 1).** It involves looking at the model's internal workings rather than just its final outputs.
