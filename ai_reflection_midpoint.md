@@ -1,3 +1,7 @@
+AI-aided pair:
+Asiya Meshitbay K12648788
+Rachid Derar K12236997
+
 At the start of Phase 1, I told the LLM to act as a collaborator, not a tool, and to call me out when I slipped. It did, more often than I expected. When I asked it to “complete my code” and choose the label mapping, it wrote defaults but sent the actual decisions back to me: whether hen and rooster may share a label, what to do with classes AudioSet doesn’t cover, whether birds count as animals. That changed how I worked with it for the rest of the phase.
 
 The interesting shift was in how we used it for visualization. Early on, the LLM suggested a confidence threshold to filter out weak predictions, but I didn’t want to hide them, so I decided we should make it a slider in our visualization instead. My partner then built it. The model’s scores turned out to be low overall, so the slider itself became one of our findings..
