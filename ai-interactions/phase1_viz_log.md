@@ -78,3 +78,4 @@
 
 * **Suggestion:** Build a 2D scatter plot (PCA) to map the model's outputs.
   * **Decision:** **Rejected (for Phase 1).** It involves looking at the model's internal workings rather than just its final outputs.
+
