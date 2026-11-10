@@ -37,6 +37,25 @@
 
   ![Cross-Dataset Comparison](../viz_plots/cross_dataset_comparison_confidence_and_sound_families.png)
 
+  **How to read the chart:**
+  The left graph shows the distribution of the model's confidence scores (from 0 to 1) for animal sounds. The right graph shows the share of predicted sound families (from 0% to 100%) for each condition.
+
+  **We have five conditions:**
+  * **Clean Animals:** The original, unmodified animal recordings with no added sounds.
+  * **White Noise:** The animal sounds with added generic static.
+  * **Mixed Audio:** The animal sounds mixed with a distinct competing sound, like a siren or a crying baby.
+  * **Human Imitations:** A human trying to mimic an animal sound.
+  * **Superb Lyrebird:** Recordings of a bird known for mimicking other sounds.
+
+  **Graph 1: Animal Confidence Score Distribution (Left Graph)**
+  Starting with the left graph, the boxplots show how sure the model is that the audio belongs to an animal. For Clean Animals, the box is high up, meaning the model is generally very confident. White Noise and Mixed Audio show wider boxes, indicating the model's confidence varies depending on the specific clip. Human Imitations have the lowest confidence, with the box sitting near 0, meaning the model rarely thinks an animal is present. Superb Lyrebird shows moderate confidence, sitting lower than the clean baseline.
+
+  **Graph 2: Share of Predicted Sound Families (Right Graph)**
+  Moving to the right graph, the stacked bars show what the model actually guessed. For Clean Animals, the bar is predominantly green, meaning it correctly predicts an animal. White Noise remains mostly green as well, showing the model handles static well. However, looking at Mixed Audio, the green portion drops to 64%, with predictions shifting into urban, human, and natural sounds. For Human Imitations, the green drops to 70%, and the purple section (Human Sounds) increases to 25%, as the model detects the human voice. Finally, for the Superb Lyrebird, the green drops to roughly 12%, and the model predominantly predicts Natural Sounds (blue) at 84%.
+
+  **Conclusion:**
+  These plots show that the model is highly confident and accurate with clean audio and generic static. However, when presented with meaningful distractors such as mixed audio, human imitations, or lyrebird mimicry, the model's confidence drops, and its predictions shift away from the animal category.
+
 * **Suggestion:** A confusion matrix grouped by sound family, filtered to show only mistakes.
   * **Decision:** **Accepted.** It hid the correct answers so we could easily see exactly when a background sound tricked the model (like guessing a siren instead of a dog).
 
@@ -44,4 +63,3 @@
 
 * **Suggestion:** Build a 2D scatter plot (PCA) to map the model's outputs.
   * **Decision:** **Rejected (for Phase 1).** It involves looking at the model's internal workings rather than just its final outputs.
-
