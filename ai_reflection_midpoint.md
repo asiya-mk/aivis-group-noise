@@ -11,3 +11,8 @@ I also tried to use the LLM as a critic. Before sharing results with the group, 
 Not everything was smooth. When I added imitation and mimicry data, the LLM questioned whether 8 files were enough, and I pushed back. Its code once assumed a file on Drive that only existed on my laptop, and the run crashed. And it wrote most of the perturbation code, so I had to make sure I understood every result I present.
 
 I still find the line between tool and collaborator blurry, but now I notice which side of it I’m on.
+
+
+AI helped us mainly as a visualization design collaborator. Given the Phase 1 goals and datasets, it proposed concrete chart types that mapped well to the analysis questions a cumulative confidence sweep to show prediction drift, a cross-dataset comparison to show confidence and predicted-family shifts, and a mistakes-only confusion matrix to expose which sound families replaced animal predictions. It also helped with quick implementation of these in Plotly and draft “how to read the chart” explanations and takeaways.
+
+The human role remained central in deciding which suggestions to accept or reject (e.g., rejecting PCA for Phase 1), keeping the scope aligned with final model outputs, and verifying that the reported numbers matched the actual plots. Overall, AI accelerated the chart ideation, implementation, and interpretation, while the human guided relevance and scope.
