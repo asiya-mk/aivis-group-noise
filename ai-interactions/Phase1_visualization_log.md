@@ -12,7 +12,6 @@
 
   ![Cumulative Confidence Sweep](../viz_plots/cumulative_confidence_sweep_urban_human_animal.png)
 
-  **How to read the chart:**
   * **X-axis:** Represents the confidence threshold.
   * **Y-axis:** Shows the percentage of true animal clips predicted as a specific category.
 
@@ -37,7 +36,6 @@
 
   ![Cross-Dataset Comparison](../viz_plots/cross_dataset_comparison_confidence_and_sound_families.png)
 
-  **How to read the chart:**
   The left graph shows the distribution of the model's confidence scores (from 0 to 1) for animal sounds. The right graph shows the share of predicted sound families (from 0% to 100%) for each condition.
 
   **We have five conditions:**
@@ -61,7 +59,6 @@
 
   ![Confusion Matrix — Mistakes Only](../viz_plots/confusion_matrix_perturbed_animals_conf_le_0.88_mistakes_only.png)
 
-  **How to read the chart:**
   The left graph shows individual audio clips where the model made a mistake (confidence ≤ 0.88), plotted by their true animal class and the model's confidence score.
   The right graph is a confusion matrix showing exactly what the model predicted for these true animal sounds, grouped by broader sound families.
 
