@@ -40,12 +40,13 @@ Gurmehak, Elif
 Code, notebooks, small CSVs, figures    
 
 ```
-notebooks/   one notebook per person
-src/         shared code 
-results/     small CSV outputs (< a few MB)
-figures/     exported plots for report/presentation
-ai_log/      AI4VIS logs
-docs/        meeting notes
+ai-interactions/    ai logs
+notebooks/          one notebook per person
+src/                shared code 
+results/            small CSV outputs (< a few MB)
+viz_plots/          exported plots for report/presentation
+ai_log/             AI4VIS logs
+docs/               meeting notes
 ```
 
 2. shared Google Drive folder :
